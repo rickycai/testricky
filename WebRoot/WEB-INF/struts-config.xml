@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="orgForm" type="com.bjsxt.oa.web.forms.OrgActionForm"></form-bean>
+		<form-bean name="personForm" type="com.bjsxt.oa.web.forms.PersonActionForm"></form-bean>
+		<form-bean name="moduleForm" type="com.bjsxt.oa.web.forms.ModuleActionForm"></form-bean>
+		<form-bean name="roleForm" type="com.bjsxt.oa.web.forms.RoleActionForm"></form-bean>
+		<form-bean name="userForm" type="com.bjsxt.oa.web.forms.UserActionForm"></form-bean>		
+	</form-beans>
+	<global-exceptions>
+		<exception 
+			key="errors.detail" 
+			type="java.lang.Exception"
+			path="/common/exception.jsp"
+			handler="com.bjsxt.oa.web.SystemExceptionHandler"
+			scope="request"
+		>
+		</exception>
+	</global-exceptions>
+	<global-forwards>
+		<forward name="pub_add_success" path="/common/pub_add_success.jsp"></forward>
+		<forward name="pub_del_success" path="/common/pub_del_success.jsp"></forward>
+		<forward name="pub_update_success" path="/common/pub_update_success.jsp"></forward>
+	</global-forwards>
+	<action-mappings>
+		<action 
+			path="/org"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="orgForm"
+			scope="request"
+			parameter="method"
+		>
+			<forward name="index" path="/org/index.jsp"></forward>
+			<forward name="add_input" path="/org/add_input.jsp"></forward>
+			<forward name="update_input" path="/org/update_input.jsp"></forward>
+			<forward name="select" path="/org/select.jsp"></forward>
+		</action>
+		<action 
+			path="/person"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="personForm"
+			scope="request"
+			parameter="method"
+		>
+			<forward name="index" path="/person/index.jsp"></forward>
+			<forward name="add_input" path="/person/add_input.jsp"></forward>
+			<forward name="update_input" path="/person/update_input.jsp"></forward>
+		</action>
+		<action 
+			path="/module"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="moduleForm"
+			scope="request"
+			parameter="method"
+		>
+			<forward name="index" path="/module/index.jsp"></forward>
+			<forward name="add_input" path="/module/add_input.jsp"/>
+			<forward name="update_input" path="/module/update_input.jsp"></forward>			
+		</action>
+		<action 
+			path="/role"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="roleForm"
+			scope="request"
+			parameter="method"
+		>
+			<forward name="index" path="/role/index.jsp"></forward>
+			<forward name="add_input" path="/role/add_input.jsp"/>
+		</action>
+		<action 
+			path="/user"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="userForm"
+			scope="request"
+			parameter="method"
+		>
+			<forward name="index" path="/user/index.jsp"></forward>
+			<forward name="add_input" path="/user/add_input.jsp"/>
+			<forward name="update_input" path="/user/update_input.jsp"/>
+			<forward name="user_role_list" path="/user/user_role_list.jsp"/>
+			<forward name="user_role_input" path="/user/user_role_input.jsp"/>
+		</action>
+	</action-mappings>
+    <message-resources parameter="MessageResources" />
+</struts-config>
